@@ -46,8 +46,8 @@ static const uint8_t digital_dir_lookup[16] = {8, 2, 6, 8, 4, 3, 5, 8, 0, 1, 7, 
 
 int main(void) {
 	uint8_t pad_up, pad_down, pad_left, pad_right, pad_cross, pad_triangle, pad_circle, pad_square, pad_l2,
-	pad_r2, pad_start, pad_select, pad_l3, pad_r3, pad_l1, pad_r1, pad_left_analog_x,
-	pad_left_analog_y, pad_right_analog_x, pad_right_analog_y;
+	pad_r2, pad_start, pad_select, pad_home, pad_l3, pad_r3, pad_l1, pad_r1, pad_left_analog_x,
+	pad_left_analog_y, /*pad_right_analog_x, pad_right_analog_y,*/ pad_switch0;
 
 	// Set clock @ 16Mhz
 	CPU_PRESCALE(0);
@@ -77,30 +77,58 @@ int main(void) {
 		pad_start =  !bit_check(PINB, 3);
 		pad_select =  !bit_check(PINB, 2);
 		
-		pad_l3 =  !bit_check(PINC, 6);      // not in DaemonBite, is it needed?
-		pad_r3 =  !bit_check(PINE, 6);      // not in DaemonBite, is it needed?
-		pad_home = !bit_check(PINB, 4);     // not in PS3PadMicro
+		pad_l3 =  !bit_check(PINB, 4);      // is it needed?
+		pad_r3 =  !bit_check(PINB, 5);      // is it needed?
+		pad_home = !bit_check(PINE, 6);     // not in PS3PadMicro
 
-		pad_left_analog_x = pad_left_analog_y = pad_right_analog_x = pad_right_analog_y = 0x7F;
+		pad_switch0 = !bit_check(PINC, 6);	// select between Left Stick and Digital Pad
 
-		if(!bit_check(PINF, 5)) {           // Left
-			pad_left_analog_x = 0x00;
-		} else if(!bit_check(PINF, 4)) {    // Right
-			pad_left_analog_x = 0xFF;
+		/* initial values for left stick and d-pad, set to neutral */
+		pad_left_analog_x = pad_left_analog_y = 0x7F;
+		pad_right = pad_left = pad_down = pad_up = 0;
+
+		/* SOCD cleaning code for both left analog stick and d-pad (depending on switch0 value)
+		   With d-pad and Right + Left its not really needed, but still added it */
+		if (pad_switch0) {
+			if (!bit_check(PINF, 4) && !bit_check(PINF, 5)) {	// SOCD cleaner: Right + Left = Neutral
+				pad_left_analog_x = 0x7F;
+			}			
+			else if (!bit_check(PINF, 4)) {						// Right
+				pad_left_analog_x = 0xFF;
+			}
+			else if (!bit_check(PINF, 5)) {						// Left
+				pad_left_analog_x = 0x00;
+			}
+
+			if (!bit_check(PINF, 6) && !bit_check(PINF, 7)) {	// SOCD cleaner: Down + Up = Up
+				pad_left_analog_y = 0x00;
+			}
+			else if (!bit_check(PINF, 6)) {						// Down
+				pad_left_analog_y = 0xFF;
+			}
+			else if (!bit_check(PINF, 7)) {						// Up
+				pad_left_analog_y = 0x00;
+			}
 		}
-
-		if(!bit_check(PINF, 7)) {           // Down
-			pad_left_analog_y = 0x00;
-		} else if(!bit_check(PINF, 6)) {    // Up
-			pad_left_analog_y = 0xFF;
+		else {
+			if (!bit_check(PINF, 4) && !bit_check(PINF, 5)) {	// SOCD cleaner: Right + Left = Neutral
+				pad_right = 0;
+				pad_left = 0;
+			}
+			else {
+				pad_right = !bit_check(PINF, 4);
+				pad_left = !bit_check(PINF, 5);
+			}
+			
+			if (!bit_check(PINF, 6) && !bit_check(PINF, 7)) {	// SOCD cleaner: Down + Up = Up
+				pad_up = 1;
+				pad_down = 0;
+			}
+			else {
+				pad_down = !bit_check(PINF, 6);
+				pad_up = !bit_check(PINF, 7);
+			}
 		}
-		
-/***************************************
-		pad_up = !bit_check(PINC, 7);
-		pad_down = !bit_check(PINB, 2);
-		pad_left = !bit_check(PINB, 0);
-		pad_right = !bit_check(PIND, 3); 
-***************************************/
 
 /***************************************
 		if(!bit_check(PINB, 1)) {
@@ -140,15 +168,15 @@ int main(void) {
 		gamepad_state.start_btn = pad_start;
 		gamepad_state.select_btn = pad_select;
 
-		gamepad_state.ps_btn = pad_start && pad_select;
+		gamepad_state.ps_btn = pad_home;
 
 		gamepad_state.l3_btn = pad_l3;
 		gamepad_state.r3_btn = pad_r3;
 
 		gamepad_state.l_x_axis = pad_left_analog_x;
 		gamepad_state.l_y_axis = pad_left_analog_y;
-		gamepad_state.r_x_axis = pad_right_analog_x;
-		gamepad_state.r_y_axis = pad_right_analog_y;
+//		gamepad_state.r_x_axis = pad_right_analog_x;
+//		gamepad_state.r_y_axis = pad_right_analog_y;
 
 		vs_send_pad_state();
 	}
