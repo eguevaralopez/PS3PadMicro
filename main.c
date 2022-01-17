@@ -66,37 +66,43 @@ int main(void) {
 	for (;;) {
 		vs_reset_watchdog();
 
-		pad_up = !bit_check(PINC, 7);
-		pad_down = !bit_check(PINB, 2);
-		pad_left = !bit_check(PINB, 0);
-		pad_right = !bit_check(PIND, 3);
-		pad_triangle = !bit_check(PIND, 2);
-		pad_circle = !bit_check(PIND, 1);
-		pad_square = !bit_check(PIND, 0);
-		pad_cross = !bit_check(PIND, 4);
-		pad_l2 =  !bit_check(PINC, 6);
-		pad_r2 =  !bit_check(PIND, 7);
-		pad_start =  !bit_check(PINE, 6);
-		pad_select =  !bit_check(PINB, 4);
-		pad_l3 =  !bit_check(PINB, 5);
-		pad_r3 =  !bit_check(PINB, 6);
-		pad_l1 = !bit_check(PINB, 7);
-		pad_r1 = !bit_check(PIND, 6);
+		pad_cross = !bit_check(PIND, 0);    // 1K
+		pad_circle = !bit_check(PIND, 1);   // 2K
+		pad_r2 =  !bit_check(PINB, 6);      // 3K		
+		pad_l2 =  !bit_check(PIND, 7);      // 4K
+		pad_square = !bit_check(PIND, 2);   // 1P
+		pad_triangle = !bit_check(PIND, 3); // 2P
+		pad_r1 = !bit_check(PINB, 1);       // 3P
+		pad_l1 = !bit_check(PIND, 4);       // 4P
+		pad_start =  !bit_check(PINB, 3);
+		pad_select =  !bit_check(PINB, 2);
+		
+		pad_l3 =  !bit_check(PINC, 6);      // not in DaemonBite, is it needed?
+		pad_r3 =  !bit_check(PINE, 6);      // not in DaemonBite, is it needed?
+		pad_home = !bit_check(PINB, 4);     // not in PS3PadMicro
 
 		pad_left_analog_x = pad_left_analog_y = pad_right_analog_x = pad_right_analog_y = 0x7F;
 
-		if(!bit_check(PINF, 5)) {
+		if(!bit_check(PINF, 5)) {           // Left
 			pad_left_analog_x = 0x00;
-		} else if(!bit_check(PINF, 4)) {
+		} else if(!bit_check(PINF, 4)) {    // Right
 			pad_left_analog_x = 0xFF;
 		}
 
-		if(!bit_check(PINF, 7)) {
+		if(!bit_check(PINF, 7)) {           // Down
 			pad_left_analog_y = 0x00;
-		} else if(!bit_check(PINF, 6)) {
+		} else if(!bit_check(PINF, 6)) {    // Up
 			pad_left_analog_y = 0xFF;
 		}
+		
+/***************************************
+		pad_up = !bit_check(PINC, 7);
+		pad_down = !bit_check(PINB, 2);
+		pad_left = !bit_check(PINB, 0);
+		pad_right = !bit_check(PIND, 3); 
+***************************************/
 
+/***************************************
 		if(!bit_check(PINB, 1)) {
 			pad_right_analog_x = 0x00;
 		} else if(!bit_check(PINB, 3)) {
@@ -108,6 +114,7 @@ int main(void) {
 		} else if(!bit_check(PINF, 1)) {
 			pad_right_analog_y = 0xFF;
 		}
+***************************************/		
 
 		gamepad_state.cross_btn = pad_cross;
 		gamepad_state.cross_axis = gamepad_state.cross_btn * 0xFF;
