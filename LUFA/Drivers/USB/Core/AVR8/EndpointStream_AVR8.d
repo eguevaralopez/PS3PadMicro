@@ -1,29 +1,28 @@
 LUFA/Drivers/USB/Core/AVR8/EndpointStream_AVR8.o: \
  LUFA/Drivers/USB/Core/AVR8/EndpointStream_AVR8.c \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/Common.h \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/Architectures.h \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/BoardTypes.h \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/ArchitectureSpecific.h \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/CompilerSpecific.h \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/Attributes.h \
- Config/LUFAConfig.h \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/Endianness.h \
+ c:\[macguevar]\retroboard\lufa\common\common.h \
+ c:\[macguevar]\retroboard\lufa\common\Architectures.h \
+ c:\[macguevar]\retroboard\lufa\common\BoardTypes.h \
+ c:\[macguevar]\retroboard\lufa\common\ArchitectureSpecific.h \
+ c:\[macguevar]\retroboard\lufa\common\CompilerSpecific.h \
+ c:\[macguevar]\retroboard\lufa\common\Attributes.h Config/LUFAConfig.h \
+ c:\[macguevar]\retroboard\lufa\common\Endianness.h \
  LUFA/Drivers/USB/Core/AVR8/../USBMode.h \
- LUFA/Drivers/USB/Core/AVR8/../../../../Common/Common.h \
+ c:\[macguevar]\retroboard\lufa\common\common.h \
  LUFA/Drivers/USB/Core/AVR8/EndpointStream_AVR8.h \
  LUFA/Drivers/USB/Core/AVR8/../USBTask.h \
  LUFA/Drivers/USB/Core/AVR8/../USBMode.h \
  LUFA/Drivers/USB/Core/AVR8/../USBController.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/USBController_AVR8.h \
- LUFA/Drivers/USB/Core/AVR8/../AVR8/../../../../Common/Common.h \
+ c:\[macguevar]\retroboard\lufa\common\common.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../USBMode.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../Events.h \
- LUFA/Drivers/USB/Core/AVR8/../AVR8/../../../../Common/Common.h \
+ c:\[macguevar]\retroboard\lufa\common\common.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../USBMode.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../USBTask.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../USBInterrupt.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/USBInterrupt_AVR8.h \
- LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/../../../../Common/Common.h \
+ c:\[macguevar]\retroboard\lufa\common\common.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/../USBMode.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/../Events.h \
  LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/../USBController.h \
@@ -53,25 +52,25 @@ LUFA/Drivers/USB/Core/AVR8/EndpointStream_AVR8.o: \
  LUFA/Drivers/USB/Core/AVR8/Template/Template_Endpoint_Control_W.c \
  LUFA/Drivers/USB/Core/AVR8/Template/Template_Endpoint_Control_R.c
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/Common.h:
+c:\[macguevar]\retroboard\lufa\common\common.h:
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/Architectures.h:
+c:\[macguevar]\retroboard\lufa\common\Architectures.h:
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/BoardTypes.h:
+c:\[macguevar]\retroboard\lufa\common\BoardTypes.h:
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/ArchitectureSpecific.h:
+c:\[macguevar]\retroboard\lufa\common\ArchitectureSpecific.h:
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/CompilerSpecific.h:
+c:\[macguevar]\retroboard\lufa\common\CompilerSpecific.h:
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/Attributes.h:
+c:\[macguevar]\retroboard\lufa\common\Attributes.h:
 
 Config/LUFAConfig.h:
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/Endianness.h:
+c:\[macguevar]\retroboard\lufa\common\Endianness.h:
 
 LUFA/Drivers/USB/Core/AVR8/../USBMode.h:
 
-LUFA/Drivers/USB/Core/AVR8/../../../../Common/Common.h:
+c:\[macguevar]\retroboard\lufa\common\common.h:
 
 LUFA/Drivers/USB/Core/AVR8/EndpointStream_AVR8.h:
 
@@ -83,13 +82,13 @@ LUFA/Drivers/USB/Core/AVR8/../USBController.h:
 
 LUFA/Drivers/USB/Core/AVR8/../AVR8/USBController_AVR8.h:
 
-LUFA/Drivers/USB/Core/AVR8/../AVR8/../../../../Common/Common.h:
+c:\[macguevar]\retroboard\lufa\common\common.h:
 
 LUFA/Drivers/USB/Core/AVR8/../AVR8/../USBMode.h:
 
 LUFA/Drivers/USB/Core/AVR8/../AVR8/../Events.h:
 
-LUFA/Drivers/USB/Core/AVR8/../AVR8/../../../../Common/Common.h:
+c:\[macguevar]\retroboard\lufa\common\common.h:
 
 LUFA/Drivers/USB/Core/AVR8/../AVR8/../USBMode.h:
 
@@ -99,7 +98,7 @@ LUFA/Drivers/USB/Core/AVR8/../AVR8/../USBInterrupt.h:
 
 LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/USBInterrupt_AVR8.h:
 
-LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/../../../../Common/Common.h:
+c:\[macguevar]\retroboard\lufa\common\common.h:
 
 LUFA/Drivers/USB/Core/AVR8/../AVR8/../AVR8/../USBMode.h:
 

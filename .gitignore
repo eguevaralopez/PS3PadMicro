@@ -1,5 +1,6 @@
 .DS_Store
 .settings/*
+.vs/*
 Descriptors.d
 Descriptors.o
 main.d

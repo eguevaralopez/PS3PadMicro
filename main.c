@@ -47,7 +47,14 @@ static const uint8_t digital_dir_lookup[16] = {8, 2, 6, 8, 4, 3, 5, 8, 0, 1, 7, 
 int main(void) {
 	uint8_t pad_up, pad_down, pad_left, pad_right, pad_cross, pad_triangle, pad_circle, pad_square, pad_l2,
 	pad_r2, pad_start, pad_select, pad_home, pad_l3, pad_r3, pad_l1, pad_r1, pad_left_analog_x,
-	pad_left_analog_y, /*pad_right_analog_x, pad_right_analog_y,*/ pad_switch0;
+	pad_left_analog_y, pad_right_analog_x, pad_right_analog_y, pad_switch0;
+
+	/* Default value for directional pins:
+	* L-Stick = 0
+	* D-Pad = 1
+	* R-Stick = still not implemented, is it needed? Does it need SOCD?
+	*/
+	uint8_t pad_mode0 = 0;
 
 	// Set clock @ 16Mhz
 	CPU_PRESCALE(0);
@@ -66,6 +73,11 @@ int main(void) {
 	for (;;) {
 		vs_reset_watchdog();
 
+		// Initial values for L-Stick, D-Pad, and R-Stick.
+		pad_left_analog_x = pad_left_analog_y = 0x7F;
+		pad_right = pad_left = pad_down = pad_up = 0;
+		pad_right_analog_x = pad_right_analog_y = 0x7F;
+
 		pad_cross = !bit_check(PIND, 0);    // 1K
 		pad_circle = !bit_check(PIND, 1);   // 2K
 		pad_r2 =  !bit_check(PINB, 6);      // 3K		
@@ -74,22 +86,40 @@ int main(void) {
 		pad_triangle = !bit_check(PIND, 3); // 2P
 		pad_r1 = !bit_check(PINB, 1);       // 3P
 		pad_l1 = !bit_check(PIND, 4);       // 4P
-		pad_start =  !bit_check(PINB, 3);
-		pad_select =  !bit_check(PINB, 2);
-		
 		pad_l3 =  !bit_check(PINB, 4);      // is it needed?
 		pad_r3 =  !bit_check(PINB, 5);      // is it needed?
-		pad_home = !bit_check(PINE, 6);     // not in PS3PadMicro
 
-		pad_switch0 = !bit_check(PINC, 6);	// select between Left Stick and Digital Pad
+		/* Toggle Tournament Mode ON / OFF
+		* When engaged, Home, Start, and Select will not be accessible.
+		*/
+		pad_switch0 = !bit_check(PINC, 6);	// toggle Tournament Mode on / off
+		if (!pad_switch0) {
+			pad_home = !bit_check(PINE, 6);
+			pad_start = !bit_check(PINB, 3);
+			pad_select = !bit_check(PINB, 2);
+		}
+		else {
+			pad_home = 0;
+			pad_start = 0;
+			pad_select = 0;
+		}
 
-		/* initial values for left stick and d-pad, set to neutral */
-		pad_left_analog_x = pad_left_analog_y = 0x7F;
-		pad_right = pad_left = pad_down = pad_up = 0;
+		/* Mode switch button combinations:
+		* Home + Select = L-Stick (0)
+		* Home + Start = D-Pad (1)
+		* R-Stick = still not implemented, is it needed?
+		*/
+		if (pad_home && pad_select) {
+			pad_mode0 = 0;
+		}
+		else if (pad_home && pad_start) {
+			pad_mode0 = 1;
+		}
 
 		/* SOCD cleaning code for both left analog stick and d-pad (depending on switch0 value)
-		   With d-pad and Right + Left its not really needed, but still added it */
-		if (pad_switch0) {
+		* With d-pad and Right + Left its not really needed, but still added it
+		*/
+		if (pad_mode0 == 0) {	// LEFT STICK
 			if (!bit_check(PINF, 4) && !bit_check(PINF, 5)) {	// SOCD cleaner: Right + Left = Neutral
 				pad_left_analog_x = 0x7F;
 			}			
@@ -110,7 +140,7 @@ int main(void) {
 				pad_left_analog_y = 0x00;
 			}
 		}
-		else {
+		else if (pad_mode0 == 1) {	// D-PAD
 			if (!bit_check(PINF, 4) && !bit_check(PINF, 5)) {	// SOCD cleaner: Right + Left = Neutral
 				pad_right = 0;
 				pad_left = 0;
@@ -129,20 +159,20 @@ int main(void) {
 				pad_up = !bit_check(PINF, 7);
 			}
 		}
-
-/***************************************
-		if(!bit_check(PINB, 1)) {
-			pad_right_analog_x = 0x00;
-		} else if(!bit_check(PINB, 3)) {
-			pad_right_analog_x = 0xFF;
+		else {	// RIGHT STICK (No SOCD cleaner implemented)
+			if (!bit_check(PINF, 4)) {
+				pad_right_analog_x = 0xFF;
+			}
+			else if (!bit_check(PINF, 5)) {
+				pad_right_analog_x = 0x00;
+			}
+			if (!bit_check(PINF, 6)) {
+				pad_right_analog_y = 0xFF;
+			}
+			else if (!bit_check(PINF, 7)) {
+				pad_right_analog_y = 0x00;
+			}
 		}
-
-		if(!bit_check(PINF, 0)) {
-			pad_right_analog_y = 0x00;
-		} else if(!bit_check(PINF, 1)) {
-			pad_right_analog_y = 0xFF;
-		}
-***************************************/		
 
 		gamepad_state.cross_btn = pad_cross;
 		gamepad_state.cross_axis = gamepad_state.cross_btn * 0xFF;
@@ -175,8 +205,8 @@ int main(void) {
 
 		gamepad_state.l_x_axis = pad_left_analog_x;
 		gamepad_state.l_y_axis = pad_left_analog_y;
-//		gamepad_state.r_x_axis = pad_right_analog_x;
-//		gamepad_state.r_y_axis = pad_right_analog_y;
+		gamepad_state.r_x_axis = pad_right_analog_x;
+		gamepad_state.r_y_axis = pad_right_analog_y;
 
 		vs_send_pad_state();
 	}
