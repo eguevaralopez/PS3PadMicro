@@ -193,7 +193,7 @@ const USB_Descriptor_Configuration_t PROGMEM ConfigurationDescriptor =
 			.EndpointAddress        = JOYSTICK_EPADDR,
 			.Attributes             = (EP_TYPE_INTERRUPT | ENDPOINT_ATTR_NO_SYNC | ENDPOINT_USAGE_DATA),
 			.EndpointSize           = JOYSTICK_EPSIZE,
-			.PollingIntervalMS      = 0x0A
+			.PollingIntervalMS      = 0x01
 		}
 };
 
@@ -214,9 +214,9 @@ const USB_Descriptor_String_t PROGMEM LanguageString =
  */
 const USB_Descriptor_String_t PROGMEM ManufacturerString =
 {
-	.Header                 = {.Size = USB_STRING_LEN(12), .Type = DTYPE_String},
+	.Header                 = {.Size = USB_STRING_LEN(9), .Type = DTYPE_String},
 
-	.UnicodeString          = L"kadevice.com"
+	.UnicodeString          = L"macguevar"
 };
 
 /** Product descriptor string. This is a Unicode string containing the product's details in human readable form,
@@ -225,9 +225,9 @@ const USB_Descriptor_String_t PROGMEM ManufacturerString =
  */
 const USB_Descriptor_String_t PROGMEM ProductString =
 {
-	.Header                 = {.Size = USB_STRING_LEN(31), .Type = DTYPE_String},
+	.Header                 = {.Size = USB_STRING_LEN(20), .Type = DTYPE_String},
 
-	.UnicodeString          = L"KADE - Kick Ass Dynamic Encoder"
+	.UnicodeString          = L"MacGuevar RetroBoard"
 };
 
 /** This function is called by the library when in device mode, and must be overridden (see library "USB Descriptors"

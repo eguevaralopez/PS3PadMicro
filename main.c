@@ -85,27 +85,27 @@ int main(void) {
 
 		pad_left_analog_x = pad_left_analog_y = pad_right_analog_x = pad_right_analog_y = 0x7F;
 
-		if(!bit_check(PINB, 1)) {
+		if(!bit_check(PINF, 5)) {
 			pad_left_analog_x = 0x00;
-		} else if(!bit_check(PINB, 3)) {
+		} else if(!bit_check(PINF, 4)) {
 			pad_left_analog_x = 0xFF;
 		}
 
-		if(!bit_check(PINF, 0)) {
+		if(!bit_check(PINF, 7)) {
 			pad_left_analog_y = 0x00;
-		} else if(!bit_check(PINF, 1)) {
+		} else if(!bit_check(PINF, 6)) {
 			pad_left_analog_y = 0xFF;
 		}
 
-		if(!bit_check(PINF, 4)) {
+		if(!bit_check(PINB, 1)) {
 			pad_right_analog_x = 0x00;
-		} else if(!bit_check(PINF, 5)) {
+		} else if(!bit_check(PINB, 3)) {
 			pad_right_analog_x = 0xFF;
 		}
 
-		if(!bit_check(PINF, 6)) {
+		if(!bit_check(PINF, 0)) {
 			pad_right_analog_y = 0x00;
-		} else if(!bit_check(PINF, 7)) {
+		} else if(!bit_check(PINF, 1)) {
 			pad_right_analog_y = 0xFF;
 		}
 

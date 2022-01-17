@@ -1,2 +1,11 @@
 .DS_Store
 .settings/*
+Descriptors.d
+Descriptors.o
+main.d
+main.o
+PS3Pad.d
+PS3Pad.o
+MacGuevar_RetroBoard.*
+DaemonBiteArcadeEncoder.ino.hex
+flashing.txt
