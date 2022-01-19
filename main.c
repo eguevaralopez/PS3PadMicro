@@ -117,7 +117,7 @@ int main(void) {
 		}
 
 		/* SOCD cleaning code for both left analog stick and d-pad (depending on switch0 value)
-		* With d-pad and Right + Left its not really needed, but still added it
+		* With d-pad and Right + Left its not really needed, but still added it 
 		*/
 		if (pad_mode0 == 0) {	// LEFT STICK
 			if (!bit_check(PINF, 4) && !bit_check(PINF, 5)) {	// SOCD cleaner: Right + Left = Neutral
