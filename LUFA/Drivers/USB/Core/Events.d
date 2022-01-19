@@ -1,30 +1,30 @@
 LUFA/Drivers/USB/Core/Events.o: LUFA/Drivers/USB/Core/Events.c \
  LUFA/Drivers/USB/Core/Events.h \
- LUFA/Drivers/USB/Core/../../../Common/Common.h \
- LUFA/Drivers/USB/Core/../../../Common/Architectures.h \
- LUFA/Drivers/USB/Core/../../../Common/BoardTypes.h \
- LUFA/Drivers/USB/Core/../../../Common/ArchitectureSpecific.h \
- LUFA/Drivers/USB/Core/../../../Common/CompilerSpecific.h \
- LUFA/Drivers/USB/Core/../../../Common/Attributes.h Config/LUFAConfig.h \
- LUFA/Drivers/USB/Core/../../../Common/Endianness.h \
+ c:\[macguevar]\fb(ps3)\lufa\common\common.h \
+ c:\[macguevar]\fb(ps3)\lufa\common\Architectures.h \
+ c:\[macguevar]\fb(ps3)\lufa\common\BoardTypes.h \
+ c:\[macguevar]\fb(ps3)\lufa\common\ArchitectureSpecific.h \
+ c:\[macguevar]\fb(ps3)\lufa\common\CompilerSpecific.h \
+ c:\[macguevar]\fb(ps3)\lufa\common\Attributes.h Config/LUFAConfig.h \
+ c:\[macguevar]\fb(ps3)\lufa\common\Endianness.h \
  LUFA/Drivers/USB/Core/USBMode.h
 
 LUFA/Drivers/USB/Core/Events.h:
 
-LUFA/Drivers/USB/Core/../../../Common/Common.h:
+c:\[macguevar]\fb(ps3)\lufa\common\common.h:
 
-LUFA/Drivers/USB/Core/../../../Common/Architectures.h:
+c:\[macguevar]\fb(ps3)\lufa\common\Architectures.h:
 
-LUFA/Drivers/USB/Core/../../../Common/BoardTypes.h:
+c:\[macguevar]\fb(ps3)\lufa\common\BoardTypes.h:
 
-LUFA/Drivers/USB/Core/../../../Common/ArchitectureSpecific.h:
+c:\[macguevar]\fb(ps3)\lufa\common\ArchitectureSpecific.h:
 
-LUFA/Drivers/USB/Core/../../../Common/CompilerSpecific.h:
+c:\[macguevar]\fb(ps3)\lufa\common\CompilerSpecific.h:
 
-LUFA/Drivers/USB/Core/../../../Common/Attributes.h:
+c:\[macguevar]\fb(ps3)\lufa\common\Attributes.h:
 
 Config/LUFAConfig.h:
 
-LUFA/Drivers/USB/Core/../../../Common/Endianness.h:
+c:\[macguevar]\fb(ps3)\lufa\common\Endianness.h:
 
 LUFA/Drivers/USB/Core/USBMode.h:
